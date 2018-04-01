@@ -29,4 +29,11 @@ public class CategoriaService {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElse(null);
 	}
+	
+	/* Notas de Aula
+	 
+	 Não usar repository.save para salvar lista, utilizar o comando abaixo
+	 
+	 repository.saveAll(Arrays.asList(cat1, cat2))
+	 */
 }
