@@ -101,7 +101,9 @@ public class PedidoService {
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
 		
-		emailService.sendOrderConfirmationHtmlEmail(obj);
+		//Como não tem configuração completa do email, não é legal enviar email nesse momento.
+		//para tanto é necessário apenas configurar o email e liberar a linha a seguir.
+//		emailService.sendOrderConfirmationHtmlEmail(obj);
 		
 		return obj;
 	}
