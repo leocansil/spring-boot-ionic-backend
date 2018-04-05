@@ -38,6 +38,10 @@ public class PedidoService {
 	private ClienteService clienteService;
 	
 	
+	@Autowired
+	private EmailService emailService;
+	
+	
 	/* Notas de aula
 	em categoriaService.
 
@@ -97,7 +101,7 @@ public class PedidoService {
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
 		
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		
 		return obj;
 	}
