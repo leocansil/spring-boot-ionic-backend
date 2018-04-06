@@ -1,5 +1,6 @@
 package com.leocs.cursomc.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.leocs.cursomc.domain.Cidade;
 import com.leocs.cursomc.domain.Cliente;
@@ -39,6 +41,8 @@ public class ClienteService {
 	@Autowired
 	private BCryptPasswordEncoder pe;
 	
+	@Autowired
+	private S3Service s3Service;
 	/* Notas de aula
 	em categoriaService.
 
@@ -136,5 +140,9 @@ public class ClienteService {
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
+	}
+	
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		return s3Service.uploadFile(multipartFile);
 	}
 }
